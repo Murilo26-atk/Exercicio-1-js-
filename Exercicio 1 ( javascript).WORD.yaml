@@ -1,0 +1,54 @@
+name: Exercicio 1 ( javascript)
+description: Create a new snippet from a blank template.
+host: WORD
+api_set: {}
+script:
+  content: |
+    /*Função que Realiza os Cálculos*/
+    function buttonCalc() {
+      Word.run(function(context) {
+        var docBody = context.document.body;
+        var number1 = txtn1.value;
+        var number2 = txtn2.value;
+        var number3 = txtn3.value;
+        var number4 = txtn4.value;
+        var number5 = txtn5.value;
+        docBody.clear();
+        if (number1 == "" || number2 == "" || number3 == "" || number4 == "" || number5 == "") {
+          docBody.insertParagraph(
+            "Não é permitido campos Vazios! Verifique se os campos estão preenchidos corretamente!",
+            "End"
+          );
+        } else {
+          var results = [];
+          number1 = parseInt(number1);
+          number2 = parseInt(number2);
+          number3 = parseInt(number3);
+          number4 = parseInt(number4);
+          number5 = parseInt(number5);
+          docBody.insertParagraph(`${number1}²  = ${Math.pow(number1, 2)}`, "End");
+          docBody.insertParagraph(`${number2}²  = ${Math.pow(number2, 2)}`, "End");
+          docBody.insertParagraph(`${number3}²  = ${Math.pow(number3, 2)}`, "End");
+          docBody.insertParagraph(`${number4}²  = ${Math.pow(number4, 2)}`, "End");
+          docBody.insertParagraph(`${number5}²  = ${Math.pow(number5, 2)}`, "End");
+        }
+        return context.sync();
+      });
+    }
+    btnCalc.addEventListener("click", buttonCalc);
+  language: typescript
+template:
+  content: "<input type=\"number\" name=\"textn1\" id=\"txtn1\" placeholder=\"Primeiro Valor\"></p>\r\n\r\n<input type=\"number\" name=\"textn2\" id=\"txtn2\" placeholder=\"Segundo Valor\"></p>\r\n\r\n<input type=\"number\" name=\"textn3\" id=\"txtn3\"\r\n placeholder=\"Terceiro Valor\"></p>\r\n\r\n<input type=\"number\" name=\"textn4\" id=\"txtn4\" placeholder=\"Quarto Valor\"></p>\r\n\r\n<input type=\"number\" name=\"textn5\" id=\"txtn5\" placeholder=\"Quinto Valor\"><br>\r\n\r\n<br><input name=\"calcular\" id=\"btnCalc\" type=\"button\" value=\"Calcular\"></p>"
+  language: html
+style:
+  content: ''
+  language: css
+libraries: |
+  https://appsforoffice.microsoft.com/lib/1/hosted/office.js
+  @types/office-js
+
+  core-js@2.4.1/client/core.min.js
+  @types/core-js
+
+  jquery@3.1.1
+  @types/jquery@3.3.1
